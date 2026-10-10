@@ -17,13 +17,12 @@ export const runtime = "nodejs";
 const LIMITS: Record<string, number> = {
   name: 120,
   phone: 40,
-  email: 200,
   service: 120,
   propertyType: 60,
-  details: 4000,
-  address: 300,
   date: 20,
-  contactMethod: 40,
+  time: 40,
+  address: 300,
+  details: 4000,
 };
 
 type Lead = Record<keyof typeof LIMITS, string>;
@@ -42,10 +41,7 @@ function validate(lead: Lead): string | null {
   if (lead.name.length < 2) return "Please enter your name.";
   const digits = lead.phone.replace(/\D/g, "");
   if (digits.length < 10 || digits.length > 11) return "Please enter a valid phone number.";
-  if (lead.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) return "Please enter a valid email address.";
   if (!lead.service) return "Please choose a service.";
-  if (!lead.propertyType) return "Please choose a property type.";
-  if (lead.details.length < 10) return "Please add a few details about the work.";
   return null;
 }
 
@@ -56,16 +52,15 @@ function summary(lead: Lead) {
   const rows: [string, string][] = [
     ["Name", lead.name],
     ["Phone", lead.phone],
-    ["Email", lead.email || "Not provided"],
     ["Service", lead.service],
-    ["Property type", lead.propertyType],
-    ["Preferred contact", lead.contactMethod || "Not specified"],
-    ["Preferred date", lead.date || "Not specified"],
-    ["Address", lead.address || "Not provided"],
-    ["Details", lead.details],
+    ["Property", lead.propertyType || "Not specified"],
+    ["Preferred date", lead.date || "Any"],
+    ["Preferred time", lead.time || "Any"],
+    ["Address / ZIP", lead.address || "Not provided"],
+    ["Details", lead.details || "None"],
   ];
   const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
-  const html = `<h2>New service request</h2><table cellpadding="6">${rows
+  const html = `<h2>New booking request</h2><table cellpadding="6">${rows
     .map(([k, v]) => `<tr><td><strong>${k}</strong></td><td>${escapeHtml(v).replace(/\n/g, "<br>")}</td></tr>`)
     .join("")}</table>`;
   return { text, html };
@@ -99,8 +94,7 @@ export async function POST(req: Request) {
         body: JSON.stringify({
           from: LEAD_FROM_EMAIL,
           to: LEAD_TO_EMAIL.split(",").map((s) => s.trim()),
-          reply_to: lead.email || undefined,
-          subject: `Service request: ${lead.service} (${lead.name})`,
+          subject: `Booking request: ${lead.service} (${lead.name})`,
           text,
           html,
         }),

@@ -1,14 +1,12 @@
 /**
  * Single source of truth for business details and page copy.
  *
- * Anything marked `verified: false` or described as a placeholder must be
- * confirmed by the owner before launch. Do not add licenses, certifications,
- * years in business, response times or service cities until they are confirmed.
+ * Do not add licenses, certifications, years in business, response times,
+ * emergency availability or service cities until the owner confirms them.
  */
 
 export const business = {
   name: "W Sincinnati Electrical",
-  shortName: "W Sincinnati",
   tagline: "Professional electrical service for your home or business.",
   phoneDisplay: "513-418-3776",
   phoneHref: "tel:+15134183776",
@@ -18,11 +16,10 @@ export const business = {
   region: "OH",
   regionName: "Ohio",
   country: "US",
-  // Add verified profile URLs to show them in the footer and reviews section.
+  // Add a verified Google Business Profile reviews URL to show a "Read reviews" link.
   googleReviewsUrl: "",
+  // Add verified profile URLs to show them in the footer.
   social: [] as { label: string; href: string }[],
-  // Leave empty until the owner confirms the areas served.
-  serviceAreas: [] as string[],
 };
 
 export const siteUrl =
@@ -32,296 +29,91 @@ export const siteUrl =
     : "http://localhost:3000");
 
 export const navLinks = [
-  { label: "Home", href: "#top" },
   { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Our Work", href: "#work" },
-  { label: "Reviews", href: "#reviews" },
+  { label: "How It Works", href: "#how" },
   { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Book", href: "#book" },
 ];
 
-export type IconName =
-  | "home"
-  | "bulb"
-  | "gauge"
-  | "building"
-  | "plug"
-  | "panel"
-  | "spark"
-  | "wire";
+export type IconName = "home" | "bulb" | "gauge" | "building";
 
-export type ServiceGroup = {
-  id: string;
-  title: string;
-  icon: IconName;
-  summary: string;
-  items: string[];
-};
-
-export const serviceGroups: ServiceGroup[] = [
+export const services: { title: string; icon: IconName; body: string }[] = [
   {
-    id: "residential",
-    title: "Residential Electrical",
+    title: "Repairs & Troubleshooting",
     icon: "home",
-    summary:
-      "Repairs, troubleshooting and installations that keep everyday power at home working the way it should.",
-    items: [
-      "Electrical repairs",
-      "Electrical troubleshooting",
-      "Outlet and switch installation",
-      "Lighting installation",
-      "Electrical panel work",
-      "Wiring and rewiring",
-    ],
+    body: "Outlets, switches, tripping breakers, flickering lights and wiring problems.",
   },
   {
-    id: "lighting",
-    title: "Lighting Solutions",
+    title: "Lighting",
     icon: "bulb",
-    summary:
-      "Interior and exterior lighting planned around how a space is used, from fixture swaps to recessed layouts.",
-    items: [
-      "Interior lighting",
-      "Exterior lighting",
-      "Fixture replacement",
-      "Recessed lighting",
-      "Security lighting",
-    ],
+    body: "Interior, exterior, recessed and security lighting, plus fixture replacement.",
   },
   {
-    id: "upgrades",
-    title: "Electrical Upgrades",
+    title: "Panels & Upgrades",
     icon: "gauge",
-    summary:
-      "Improvements for homes and buildings that need more capacity, new circuits or modernized components.",
-    items: [
-      "Electrical system upgrades",
-      "Panel upgrades",
-      "Dedicated circuits",
-      "Electrical improvements",
-      "New electrical installations",
-    ],
+    body: "Panel work and upgrades, dedicated circuits and new electrical installations.",
   },
   {
-    id: "commercial",
-    title: "Commercial Electrical",
+    title: "Commercial",
     icon: "building",
-    summary:
-      "Electrical repairs, lighting and installation work for businesses that depend on reliable power.",
-    items: [
-      "Commercial electrical repairs",
-      "Lighting systems",
-      "Electrical installation",
-      "Electrical troubleshooting",
-      "Commercial electrical improvements",
-    ],
+    body: "Repairs, lighting systems and electrical installation for businesses.",
   },
 ];
 
 export const serviceOptions = [
-  "Electrical repair or troubleshooting",
+  "Repair or troubleshooting",
   "Outlets or switches",
   "Lighting installation",
   "Panel work or upgrade",
-  "Wiring or rewiring",
-  "Dedicated circuit",
+  "New circuit or installation",
   "Commercial electrical",
   "Something else",
 ];
 
-export const commonIssues = [
-  "Outlets or switches that stop working",
-  "Lights that flicker",
-  "Breakers that trip repeatedly",
-  "Outdated electrical components",
-  "New lighting or installation needs",
-  "Electrical upgrades for a renovation",
-];
+export const timeWindows = ["Morning", "Afternoon", "Evening", "Flexible"];
 
-export const reasons = [
+export const steps = [
   {
-    title: "Professional Approach",
-    body: "Clear communication and a professional approach to every electrical job, large or small.",
+    title: "Request a visit",
+    body: "Send the form or call. Tell us what you need and when works for you.",
   },
   {
-    title: "Attention to Detail",
-    body: "Careful planning, organized work and close attention to what each project actually requires.",
+    title: "Confirm the details",
+    body: "W Sincinnati Electrical follows up to talk through the job and set a time.",
   },
   {
-    title: "Customer-Focused Service",
-    body: "An easy way to explain what you need, and a clear picture of the proposed next steps.",
-  },
-  {
-    title: "Practical Solutions",
-    body: "Help understanding the options available for your electrical project before work begins.",
-  },
-  {
-    title: "Quality Workmanship",
-    body: "A commitment to doing electrical work carefully, neatly and professionally.",
-  },
-  {
-    title: "Clear Communication",
-    body: "Straightforward explanations of the scope of work, recommendations and what happens next.",
-  },
-];
-
-export const processSteps = [
-  {
-    title: "Get in Touch",
-    body: "Call or submit a service request explaining what you need.",
-  },
-  {
-    title: "Discuss the Project",
-    body: "Share the relevant details so the service requirements can be understood.",
-  },
-  {
-    title: "Determine the Next Steps",
-    body: "Discuss the appropriate assessment, recommendations or project plan.",
-  },
-  {
-    title: "Move Forward",
-    body: "Proceed with the agreed work and next steps.",
-  },
-];
-
-export const warningSigns = [
-  {
-    title: "Breakers that keep tripping",
-    body: "A breaker that trips again and again is a sign the circuit should be looked at.",
-  },
-  {
-    title: "Burning smells",
-    body: "Any burning or hot-plastic smell near outlets or the panel deserves prompt attention.",
-  },
-  {
-    title: "Damaged outlets or switches",
-    body: "Cracked, loose or scorched devices should not be left in service.",
-  },
-  {
-    title: "Flickering lights",
-    body: "Persistent flicker can point to a loose connection or a circuit issue.",
-  },
-  {
-    title: "Warm or discolored parts",
-    body: "Cover plates, cords or components that feel warm or look discolored are a warning sign.",
-  },
-  {
-    title: "Renovation concerns",
-    body: "Remodeling often changes electrical needs. Plan the electrical side before walls close up.",
-  },
-];
-
-/**
- * SAMPLE PROJECTS
- * These are illustrative placeholders, not completed W Sincinnati Electrical
- * projects. Replace `visual` with a real photo path (e.g. "/work/kitchen.jpg")
- * and update the copy once the owner supplies genuine project details.
- */
-export type Project = {
-  id: string;
-  title: string;
-  category: "Residential" | "Lighting" | "Commercial" | "Upgrades";
-  description: string;
-  visual: "panel" | "pendants" | "ceiling" | "outlet" | "exterior";
-  photo?: string;
-  sample: boolean;
-};
-
-export const projects: Project[] = [
-  {
-    id: "panel",
-    title: "Panel Upgrade",
-    category: "Upgrades",
-    description:
-      "Space reserved for a panel or service upgrade project. Add before and after photos and a short scope summary.",
-    visual: "panel",
-    sample: true,
-  },
-  {
-    id: "pendants",
-    title: "Kitchen Lighting",
-    category: "Lighting",
-    description:
-      "Space reserved for an interior lighting project such as pendant or recessed lighting.",
-    visual: "pendants",
-    sample: true,
-  },
-  {
-    id: "ceiling",
-    title: "Commercial Lighting",
-    category: "Commercial",
-    description:
-      "Space reserved for a commercial lighting or electrical installation project.",
-    visual: "ceiling",
-    sample: true,
-  },
-  {
-    id: "outlet",
-    title: "Outlets and Switches",
-    category: "Residential",
-    description:
-      "Space reserved for a residential repair or device installation project.",
-    visual: "outlet",
-    sample: true,
-  },
-  {
-    id: "exterior",
-    title: "Exterior Lighting",
-    category: "Lighting",
-    description:
-      "Space reserved for an exterior or security lighting project.",
-    visual: "exterior",
-    sample: true,
+    title: "Get it done right",
+    body: "The work is completed carefully, with clear communication along the way.",
   },
 ];
 
 /**
  * REVIEWS
- * Empty by design. Add only real, authorized customer reviews, e.g.
- * { quote: "...", name: "First L.", source: "Google", url: "https://...", rating: 5 }
+ * The section stays hidden until real, authorized reviews are added, e.g.
+ * { quote: "...", name: "First L.", source: "Google", url: "https://..." }
  */
-export type Review = {
-  quote: string;
-  name: string;
-  source: string;
-  url?: string;
-  rating?: number;
-};
-
+export type Review = { quote: string; name: string; source: string; url?: string };
 export const reviews: Review[] = [];
 
 export const faqs = [
   {
-    q: "What electrical services do you provide?",
-    a: "W Sincinnati Electrical handles electrical repairs, troubleshooting, outlet and switch work, lighting, panel work, wiring and upgrades. If your project is not listed, call 513-418-3776 to ask.",
+    q: "What electrical work do you do?",
+    a: "Repairs and troubleshooting, outlets and switches, lighting, panel work and upgrades, wiring, dedicated circuits and commercial electrical work. Not sure if your project fits? Call 513-418-3776.",
   },
   {
-    q: "Do you handle residential electrical projects?",
-    a: "Yes. Residential work such as repairs, lighting installation, outlets and switches, and electrical upgrades is a core part of the services offered.",
+    q: "Do you work with homes and businesses?",
+    a: "Yes. W Sincinnati Electrical takes residential and commercial requests.",
   },
   {
-    q: "Do you work on commercial electrical projects?",
-    a: "Commercial repairs, lighting systems and electrical installation are among the services offered. Get in touch with the details of your property and project to discuss it.",
-  },
-  {
-    q: "How do I request electrical service?",
-    a: "Call 513-418-3776 or fill out the service request form on this page. Include what you need and the best way to reach you.",
-  },
-  {
-    q: "Can I contact you about an electrical upgrade?",
-    a: "Yes. Panel upgrades, dedicated circuits and other electrical improvements can be discussed by phone or through the request form.",
-  },
-  {
-    q: "What information should I provide when requesting service?",
-    a: "A short description of the issue or project, the property type (home or business), your location, and any photos or details that help explain the work. Do not open panels or remove covers to gather information.",
+    q: "How do I book a visit?",
+    a: "Fill out the booking form with your preferred date and time, or call 513-418-3776. You'll be contacted to confirm the details. A request is not a confirmed appointment until then.",
   },
   {
     q: "Which areas do you serve?",
-    a: "W Sincinnati Electrical is based in Cincinnati, Ohio. Call or send a request with your location to confirm service in your area.",
+    a: "W Sincinnati Electrical is based in Cincinnati, Ohio. Include your address in the request or call to confirm service in your area.",
   },
   {
-    q: "How can I get in touch?",
-    a: "Call 513-418-3776 or use the service request form. Questions about pricing, scheduling and availability are best answered by contacting the team directly.",
+    q: "What if it's an emergency?",
+    a: "If there is smoke, fire or immediate danger, move away from the area and call 911 first. Please don't open panels or attempt hazardous repairs yourself.",
   },
 ];

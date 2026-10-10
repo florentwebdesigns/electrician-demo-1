@@ -44,7 +44,7 @@ export function Navbar() {
         </a>
         <nav className="nav__links" aria-label="Primary">
           <ul>
-            {navLinks.slice(1).map((l) => (
+            {navLinks.map((l) => (
               <li key={l.href}>
                 <a href={l.href}>{l.label}</a>
               </li>
@@ -90,8 +90,8 @@ export function Navbar() {
           <a href={business.phoneHref} className="btn btn--primary btn--block">
             <PhoneIcon size={18} /> Call {business.phoneDisplay}
           </a>
-          <a href="#contact" className="btn btn--ghost btn--block" onClick={() => setOpen(false)}>
-            Request Service
+          <a href="#book" className="btn btn--ghost btn--block" onClick={() => setOpen(false)}>
+            Book a Visit
           </a>
         </div>
       </div>
@@ -106,8 +106,8 @@ export function MobileActionBar() {
         <PhoneIcon size={18} />
         Call Now
       </a>
-      <a href="#contact" className="mobile-bar__request">
-        Request Service
+      <a href="#book" className="mobile-bar__request">
+        Book a Visit
       </a>
     </div>
   );

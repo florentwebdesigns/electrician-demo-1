@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
-import { business, faqs, serviceGroups, siteUrl } from "@/content/site";
+import { business, faqs, services, siteUrl } from "@/content/site";
 import "./globals.css";
 
 const display = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-display", display: "swap" });
@@ -49,13 +49,9 @@ const jsonLd = [
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Electrical services",
-      itemListElement: serviceGroups.map((g) => ({
-        "@type": "OfferCatalog",
-        name: g.title,
-        itemListElement: g.items.map((item) => ({
-          "@type": "Offer",
-          itemOffered: { "@type": "Service", name: item },
-        })),
+      itemListElement: services.map((s) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: s.title, description: s.body },
       })),
     },
   },
