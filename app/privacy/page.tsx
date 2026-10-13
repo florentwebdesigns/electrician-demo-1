@@ -21,13 +21,13 @@ export default function Privacy() {
         </p>
         <h2>Information you provide</h2>
         <p>
-          When you submit a booking request, we collect the details you enter, such as your name, phone number, the
-          service and property type, your preferred date and time, your address and a description of the work.
+          When you submit a service request, we collect the details you enter, such as your name, phone number, email
+          address, property type, project address and a description of the work.
         </p>
         <h2>How it is used</h2>
         <ul>
           <li>To respond to your request and discuss your electrical project.</li>
-          <li>To contact you to confirm an appointment.</li>
+          <li>To contact you using your preferred contact method.</li>
         </ul>
         <p>We do not sell your personal information.</p>
         <h2>Service providers</h2>

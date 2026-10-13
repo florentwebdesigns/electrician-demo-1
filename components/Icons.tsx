@@ -116,6 +116,29 @@ const serviceIcons: Record<IconName, React.ReactNode> = {
       <path d="M7 8h2M7 12h2M7 16h2M15 12h2M15 16h2M2.5 21h19" />
     </>
   ),
+  plug: (
+    <>
+      <path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0V8ZM12 17v4" />
+    </>
+  ),
+  panel: (
+    <>
+      <rect x="5" y="3" width="14" height="18" rx="1.5" />
+      <path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2" />
+    </>
+  ),
+  spark: (
+    <>
+      <path d="M13 2 5 13.5h6L10 22l8-11.5h-6L13 2Z" />
+    </>
+  ),
+  wire: (
+    <>
+      <path d="M3 7h5a4 4 0 0 1 4 4v2a4 4 0 0 0 4 4h5" />
+      <circle cx="3" cy="7" r=".5" />
+      <circle cx="21" cy="17" r=".5" />
+    </>
+  ),
 };
 
 export function ServiceIcon({ name, ...p }: Props & { name: IconName }) {
